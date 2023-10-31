@@ -1,0 +1,55 @@
+@use'./colors';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+	font-size: 62.5%;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+	background-color: colors.$grey;
+	color: colors.$black;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.6rem;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+img {
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+}
+
+button {
+	cursor: pointer;
+}
+
+textarea {
+	resize: vertical;
+}

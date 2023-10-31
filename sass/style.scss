@@ -1,0 +1,134 @@
+@use './reset';
+@use './colors';
+@use './animation';
+
+.container {
+	position: relative;
+	left: 0;
+	top: 0;
+	padding: 30px;
+	max-width: 700px;
+	min-width: 150px;
+	margin: 50px auto;
+	background-color: colors.$white;
+	box-shadow: 0 10px 0 0 colors.$red inset;
+
+	h1,
+	h2 {
+		color: colors.$red;
+	}
+
+	h1 {
+		padding: 20px 10px;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 36px;
+		line-height: 42px;
+		letter-spacing: 3px;
+		animation: flipdown 0.5s ease both;
+	}
+
+	h2 {
+		font-size: 26px;
+		line-height: 34px;
+		letter-spacing: 1px;
+		user-select: none;
+		cursor: pointer;
+	}
+
+	p {
+		position: relative;
+		max-height: 800px;
+		margin-top: 14px;
+		font-size: 17px;
+		line-height: 26px;
+		letter-spacing: 1px;
+		color: colors.$black;
+		overflow: hidden;
+		opacity: 1;
+		transform: translate(0, 0);
+		z-index: 2;
+		transition: all 0.25s ease-in-out;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		perspective: 900;
+
+		li {
+			position: relative;
+			padding: 0;
+			margin: 0;
+			padding-bottom: 4px;
+			padding-top: 18px;
+			border-top: 1px solid colors.$grey;
+			animation: flipdown 0.5s ease both;
+
+			&:nth-of-type(1) {
+				animation-delay: 0.5s;
+			}
+
+			&:nth-of-type(2) {
+				animation-delay: 0.75s;
+			}
+
+			&:nth-of-type(3) {
+				animation-delay: 1s;
+			}
+
+			&:last-of-type {
+				padding-bottom: 0;
+			}
+
+			i {
+				position: absolute;
+				right: 30px;
+				margin-top: 10px;
+				transform: translate(-6px, 0);
+
+				&:before,
+				&:after {
+					content: '';
+					position: absolute;
+					width: 3px;
+					height: 9px;
+					background-color: colors.$red;
+					transition: all 0.25s ease-in-out;
+				}
+
+				&:before {
+					transform: translate(-2px, 0) rotate(45deg);
+				}
+
+				&:after {
+					transform: translate(2px, 0) rotate(-45deg);
+				}
+			}
+
+			input[type='checkbox'] {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				z-index: 1;
+				opacity: 0;
+
+				&:checked ~ i:before {
+					transform: translate(2px, 0) rotate(45deg);
+				}
+
+				&:checked ~ i:after {
+					transform: translate(-2px, 0) rotate(-45deg);
+				}
+
+				&:checked ~ p {
+					margin-top: 0;
+					max-height: 0;
+					opacity: 0;
+					transform: translate(0, 50%);
+				}
+			}
+		}
+	}
+}
