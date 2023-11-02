@@ -1,0 +1,19 @@
+@mixin setFlex($flex-direction, $justify-content: center) {
+	display: flex;
+	flex-direction: $flex-direction;
+	justify-content: $justify-content;
+}
+
+@mixin contactForm {
+	margin-bottom: 2em;
+	padding: 0.6em 1.2em;
+	border-radius: 8px;
+	font-size: 1.6rem;
+}
+
+@mixin checkedInput {
+	margin-top: 0;
+	max-height: 0;
+	opacity: 0;
+	transform: translate(0, 50%);
+}

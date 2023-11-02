@@ -1,15 +1,16 @@
 @use './reset';
 @use './colors';
 @use './animation';
+@use './mixin';
 
 .container {
 	position: relative;
 	left: 0;
 	top: 0;
-	padding: 30px;
+	padding: 2em;
 	max-width: 700px;
 	min-width: 150px;
-	margin: 50px auto;
+	margin: 3em auto;
 	background-color: colors.$white;
 	box-shadow: 0 10px 0 0 colors.$red inset;
 
@@ -19,17 +20,17 @@
 	}
 
 	h1 {
-		padding: 20px 10px;
+		padding: 0.5em;
 		text-align: center;
 		text-transform: uppercase;
-		font-size: 36px;
+		font-size: 3.6rem;
 		line-height: 42px;
 		letter-spacing: 3px;
 		animation: flipdown 0.5s ease both;
 	}
 
 	h2 {
-		font-size: 26px;
+		font-size: 2.6rem;
 		line-height: 34px;
 		letter-spacing: 1px;
 		user-select: none;
@@ -39,16 +40,53 @@
 	p {
 		position: relative;
 		max-height: 800px;
-		margin-top: 14px;
-		font-size: 17px;
+		margin-top: 0.3em;
+		font-size: 1.7rem;
 		line-height: 26px;
 		letter-spacing: 1px;
 		color: colors.$black;
-		overflow: hidden;
 		opacity: 1;
+		overflow: hidden;
 		transform: translate(0, 0);
 		z-index: 2;
 		transition: all 0.25s ease-in-out;
+	}
+
+	.contact {
+		position: relative;
+		margin: 0.9em 0;
+		opacity: 1;
+		overflow: hidden;
+		transform: translate(0, 0);
+		z-index: 2;
+		transition: all 0.25s ease-in-out;
+		&__heading {
+			margin-bottom: 0.5em;
+		}
+		&__form,
+		&__form-top {
+			@include mixin.setFlex(column);
+		}
+		&__form-label {
+			margin-bottom: 0.5em;
+			text-transform: uppercase;
+		}
+		&__form-input {
+			@include mixin.contactForm;
+		}
+		&__form-textarea {
+			@include mixin.contactForm;
+			width: 100%;
+			min-height: 150px;
+			resize: vertical;
+		}
+		&__form-btn {
+			align-self: flex-end;
+			padding: 1em;
+			width: 100%;
+			max-width: 300px;
+			border-radius: 8px;
+		}
 	}
 
 	ul {
@@ -60,8 +98,8 @@
 			position: relative;
 			padding: 0;
 			margin: 0;
-			padding-bottom: 4px;
-			padding-top: 18px;
+			padding-bottom: 0.5em;
+			padding-top: 0.5em;
 			border-top: 1px solid colors.$grey;
 			animation: flipdown 0.5s ease both;
 
@@ -84,7 +122,7 @@
 			i {
 				position: absolute;
 				right: 30px;
-				margin-top: 10px;
+				margin-top: 0.5em;
 				transform: translate(-6px, 0);
 
 				&:before,
@@ -122,11 +160,9 @@
 					transform: translate(-2px, 0) rotate(-45deg);
 				}
 
-				&:checked ~ p {
-					margin-top: 0;
-					max-height: 0;
-					opacity: 0;
-					transform: translate(0, 50%);
+				&:checked ~ p,
+				&:checked ~ .contact {
+					@include mixin.checkedInput;
 				}
 			}
 		}
